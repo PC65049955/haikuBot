@@ -1,5 +1,3 @@
-# haikuBot
-
 # Daily Haiku Twitter Bot
 
 This is a simple bot that tweets a daily haiku on Twitter. The haiku is randomly selected from a pre-defined list of haiku poems.
@@ -8,13 +6,9 @@ This is a simple bot that tweets a daily haiku on Twitter. The haiku is randomly
 
 1.  Clone this repository to your local machine.
 
-Copy code
-
 `git clone https://github.com/<your-username>/daily-haiku-bot.git`
 
 1.  Navigate to the project directory and install the dependencies.
-
-Copy code
 
 `cd daily-haiku-bot
 pip install -r requirements.txt`
@@ -23,16 +17,12 @@ pip install -r requirements.txt`
 
 2.  Create a file called `secrets.py` in the project directory and add the following lines, replacing the placeholder text with your own API keys and access tokens:
 
-Copy code
-
 `api_key = "YOUR_API_KEY"
 api_secret_key = "YOUR_API_SECRET_KEY"
 access_token = "YOUR_ACCESS_TOKEN"
 access_token_secret = "YOUR_ACCESS_TOKEN_SECRET"`
 
 1.  Run the script to tweet a daily haiku. You can use a service like [cron](https://en.wikipedia.org/wiki/Cron) to schedule the script to run at a specific time each day.
-
-Copy code
 
 `python tweet.py`
 

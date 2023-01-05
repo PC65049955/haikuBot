@@ -57,13 +57,28 @@ def send_haikus_to_followers():
         # Send a haiku to the follower in a direct message
         send_haiku_to_follower(user_id)
 
+
+def send_haiku_to_follower(user_id):
+    # Get the user's most recent text-based tweet
+    tweets = api.user_timeline(user_id)
+    for tweet in tweets:
+        if tweet.in_reply_to_status_id is None and tweet.in_reply_to_user_id is None:
+            most_recent_tweet = tweet
+            break
+    else:
+        return  # No text-based tweets found
+
+    # Generate a haiku about the tweet
+    haiku = generate_haiku(tweet_text=most_recent_tweet.text)
+
+ # Send the haiku to the user in a direct message along with a custom message
+    message = f"Thanks for the follow, I created a custom poem about one of your most recent tweets: {haiku}"
+    api.send_direct_message(user_id, message)
+
 # Autofollow anyone that follows the account
-
-
 @api.on_event(tweepy.StreamingEvent.FOLLOW)
 def autofollow(event):
     api.create_friendship(event.source.id)
-
 
 while True:
     # Post a haiku every 30 minutes
@@ -78,3 +93,4 @@ while True:
             send_haikus_to_followers()
             break
         time.sleep(60)
+  
