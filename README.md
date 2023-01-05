@@ -1,5 +1,3 @@
-/github/gist/last-commit/:gistId
-
 # Daily Haiku Twitter Bot
 
 Welcome to the Daily Haiku Twitter Bot! This bot was designed to tweet a daily haiku to your Twitter account. A haiku is a traditional Japanese form of poetry consisting of three lines, with the first and third lines having five syllables, and the second line having seven syllables.
