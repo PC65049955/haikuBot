@@ -1,6 +1,7 @@
 import openai
 import tweepy
 import time
+import pickle
 
 # Authenticate with Twitter API
 auth = tweepy.OAuth1UserHandler(
@@ -23,22 +24,25 @@ def generate_haiku(tweet_text=None):
     haiku = completions.choices[0].text
     return haiku
 
-
-haikus_posted = []
-
-
 def post_haiku():
-    while True:
-        haiku = generate_haiku()
-        if haiku not in haikus_posted:
-            break
-    haikus_posted.append(haiku)
-    # Post the haiku to the account's timeline
-    tweet = api.update_status(haiku)
-    # Track the engagement of the tweet
-    likes = tweet.favorite_count
-    retweets = tweet.retweet_count
-    return likes, retweets
+  # Load the list of haikus that have been posted from the pickle file
+  with open("haikus_posted.pkl", "rb") as f:
+    haikus_posted = pickle.load(f)
+
+  while True:
+    haiku = generate_haiku()
+    if haiku not in haikus_posted:
+      break
+  haikus_posted.append(haiku)
+  # Save the updated list of haikus that have been posted to the pickle file
+  with open("haikus_posted.pkl", "wb") as f:
+    pickle.dump(haikus_posted, f)
+  # Post the haiku to the account's timeline
+  tweet = api.update_status(haiku)
+  # Track the engagement of the tweet
+  likes = tweet.favorite_count
+  retweets = tweet.retweet_count
+  return likes, retweets
 
 
 def send_haikus_to_followers():
