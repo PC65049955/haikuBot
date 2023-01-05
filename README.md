@@ -63,3 +63,5 @@ If you'd like to contribute to this project, please feel free to create a pull r
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](https://chat.openai.com/chat/LICENSE) file for details.
+
+![Twitter Follow](https://img.shields.io/twitter/follow/PC65049955?style=social)
